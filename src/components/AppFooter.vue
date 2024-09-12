@@ -1,11 +1,11 @@
 <script>
+import { store } from '../store.js';
+
 export default {
   data() {
     return { 
+      store
     }
-  },
-  props: {
-    charactersNumber: Number
   }
 }
 </script>
@@ -15,7 +15,7 @@ export default {
     <div class="container">
       <div class="row">
         <div class="col text-center py-3">
-          Found {{ charactersNumber }} characters
+          Found {{ store.allCharacters.length }} characters
         </div>
       </div>
     </div>

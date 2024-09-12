@@ -3,10 +3,13 @@ import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import AppFooter from './components/AppFooter.vue';
 import axios from 'axios';
+import { store } from './store.js';
 
 export default {
   data() {
     return { 
+      // store: store,
+      store,
       allCharacters: []
     }
   },
@@ -23,7 +26,7 @@ export default {
         console.log('DATI CHE CI HA RISPOSTO IL SERVER:', res.data);
         console.log('TUTTI I PERSONAGGI:', res.data.results);
 
-        this.allCharacters = res.data.results;
+        this.store.allCharacters = res.data.results;
       });
   }
 }
@@ -32,9 +35,9 @@ export default {
 <template>
   <AppHeader />
 
-  <AppMain :characters="allCharacters" />
+  <AppMain />
 
-  <AppFooter :charactersNumber="allCharacters.length" />
+  <AppFooter />
 </template>
 
 <style lang="scss">
