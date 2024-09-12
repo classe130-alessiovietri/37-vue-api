@@ -2,24 +2,24 @@
 export default {
   data() {
     return { 
-      message: 'Rick & Morty App'
     }
+  },
+  props: {
+    charactersNumber: Number
   }
 }
 </script>
 
 <template>
-  <header>
+  <footer>
     <div class="container">
       <div class="row">
-        <div class="col text-center py-4">
-          <h1>
-            {{ message }}
-          </h1>
+        <div class="col text-center py-3">
+          Found {{ charactersNumber }} characters
         </div>
       </div>
     </div>
-  </header>
+  </footer>
 </template>
 
 <style lang="scss" scoped>
