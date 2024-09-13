@@ -30,10 +30,6 @@ export default {
         }
       })
       .then((res) => {
-        console.log('OGGETTO CREATO DA AXIOS:', res);
-        console.log('DATI CHE CI HA RISPOSTO IL SERVER:', res.data);
-        console.log('TUTTI I PERSONAGGI:', res.data.results);
-
         this.store.allCharacters = res.data.results;
       })
       .catch((err) => {

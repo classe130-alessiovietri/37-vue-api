@@ -26,49 +26,6 @@ export default {
   methods: {
     performSearch() {
       this.$emit('performSearch');
-
-      /* 
-      
-        SE ho searchText oppure searchStatus
-          aggiungo sicuramente il ?
-
-          SE ho searchText
-            agigungo il parametro name
-
-          Se ho searchStatus
-            SE ho searchText
-              agigungo la &
-            aggiungo il parametro status
-      
-      */
-
-      // let params = '';
-      // if (this.searchText != '') {
-      //   params += 'name=' + this.searchText + '&';
-      // }
-
-      // if (this.searchStatus != '') {
-      //   params += 'status=' + this.searchStatus;
-      // }
-
-      // axios
-      //   // .get('https://rickandmortyapi.com/api/character?' + params)
-      //   .get('https://rickandmortyapi.com/api/character', {
-      //     params: {
-      //       name: this.searchText,
-      //       status: this.searchStatus
-      //     }
-      //   })
-      //   .then((res) => {
-      //     console.log('OGGETTO CREATO DA AXIOS:', res);
-      //     console.log('DATI CHE CI HA RISPOSTO IL SERVER:', res.data);
-      //     console.log('TUTTI I PERSONAGGI:', res.data.results);
-
-      //     this.store.allCharacters = res.data.results;
-      //   })
-      //   .catch((err) => {
-      //     this.store.allCharacters = [];
-      //   });
     }
   }
 }
@@ -84,7 +41,6 @@ export default {
           </h1>
 
           <form @submit.prevent="performSearch()" class="w-100 d-flex justify-content-center align-items-center mt-4">
-          <!-- <form @submit.prevent="$emit('performSearch')" class="w-100 d-flex justify-content-center align-items-center mt-4"> -->
             <input v-model="store.searchText" type="text" class="form-control w-25" placeholder="Search character">
             <select v-model="store.searchStatus" class="form-control w-25 mx-2">
               <option value="">Select status</option>
