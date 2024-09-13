@@ -7,6 +7,20 @@ export default {
     return {
       store,
       message: 'Rick & Morty App',
+      availableStatuses: [
+        {
+          label: 'Alive',
+          value: 'alive'
+        },
+        {
+          label: 'Dead',
+          value: 'dead'
+        },
+        {
+          label: 'Unknown',
+          value: 'unknown'
+        },
+      ],
       searchText: '',
       searchStatus: '',
     }
@@ -69,21 +83,19 @@ export default {
             {{ message }}
           </h1>
 
-          <div class="d-flex justify-content-center align-items-center mt-4">
+          <form class="w-100 d-flex justify-content-center align-items-center mt-4"  @submit.prevent="performSearch()">
             <input v-model="searchText" type="text" class="form-control w-25" placeholder="Search character">
             <select v-model="searchStatus" class="form-control w-25 mx-2">
               <option value="">Select status</option>
-              <option value="alive">Alive</option>
-              <option value="dead">Dead</option>
-              <option value="unknown">Unknown</option>
+              <option v-for="(status, i) in availableStatuses" :key="i" :value="status.value">{{ status.label }}</option>
             </select>
-            <button @click="performSearch()" class="btn btn-primary me-2">
+            <button type="submit" class="btn btn-primary me-2">
               Search
             </button>
-            <button class="btn btn-warning">
+            <button type="reset" class="btn btn-warning">
               Reset
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
