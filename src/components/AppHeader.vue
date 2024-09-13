@@ -21,12 +21,12 @@ export default {
           value: 'unknown'
         },
       ],
-      searchText: '',
-      searchStatus: '',
     }
   },
   methods: {
     performSearch() {
+      this.$emit('performSearch');
+
       /* 
       
         SE ho searchText oppure searchStatus
@@ -51,24 +51,24 @@ export default {
       //   params += 'status=' + this.searchStatus;
       // }
 
-      axios
-        // .get('https://rickandmortyapi.com/api/character?' + params)
-        .get('https://rickandmortyapi.com/api/character', {
-          params: {
-            name: this.searchText,
-            status: this.searchStatus
-          }
-        })
-        .then((res) => {
-          console.log('OGGETTO CREATO DA AXIOS:', res);
-          console.log('DATI CHE CI HA RISPOSTO IL SERVER:', res.data);
-          console.log('TUTTI I PERSONAGGI:', res.data.results);
+      // axios
+      //   // .get('https://rickandmortyapi.com/api/character?' + params)
+      //   .get('https://rickandmortyapi.com/api/character', {
+      //     params: {
+      //       name: this.searchText,
+      //       status: this.searchStatus
+      //     }
+      //   })
+      //   .then((res) => {
+      //     console.log('OGGETTO CREATO DA AXIOS:', res);
+      //     console.log('DATI CHE CI HA RISPOSTO IL SERVER:', res.data);
+      //     console.log('TUTTI I PERSONAGGI:', res.data.results);
 
-          this.store.allCharacters = res.data.results;
-        })
-        .catch((err) => {
-          this.store.allCharacters = [];
-        });
+      //     this.store.allCharacters = res.data.results;
+      //   })
+      //   .catch((err) => {
+      //     this.store.allCharacters = [];
+      //   });
     }
   }
 }
@@ -83,9 +83,10 @@ export default {
             {{ message }}
           </h1>
 
-          <form class="w-100 d-flex justify-content-center align-items-center mt-4"  @submit.prevent="performSearch()">
-            <input v-model="searchText" type="text" class="form-control w-25" placeholder="Search character">
-            <select v-model="searchStatus" class="form-control w-25 mx-2">
+          <form @submit.prevent="performSearch()" class="w-100 d-flex justify-content-center align-items-center mt-4">
+          <!-- <form @submit.prevent="$emit('performSearch')" class="w-100 d-flex justify-content-center align-items-center mt-4"> -->
+            <input v-model="store.searchText" type="text" class="form-control w-25" placeholder="Search character">
+            <select v-model="store.searchStatus" class="form-control w-25 mx-2">
               <option value="">Select status</option>
               <option v-for="(status, i) in availableStatuses" :key="i" :value="status.value">{{ status.label }}</option>
             </select>

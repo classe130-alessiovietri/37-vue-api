@@ -18,21 +18,34 @@ export default {
     AppFooter,
   },
   created() {
-    axios
-      .get('https://rickandmortyapi.com/api/character')
+    this.getDataFromApi();
+  },
+  methods: {
+    getDataFromApi() {
+      axios
+      .get('https://rickandmortyapi.com/api/character', {
+        params: {
+          name: this.store.searchText,
+          status: this.store.searchStatus
+        }
+      })
       .then((res) => {
         console.log('OGGETTO CREATO DA AXIOS:', res);
         console.log('DATI CHE CI HA RISPOSTO IL SERVER:', res.data);
         console.log('TUTTI I PERSONAGGI:', res.data.results);
 
         this.store.allCharacters = res.data.results;
+      })
+      .catch((err) => {
+        this.store.allCharacters = [];
       });
+    }
   }
 }
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader @performSearch="getDataFromApi()" />
 
   <AppMain />
 
