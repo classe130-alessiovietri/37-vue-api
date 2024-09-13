@@ -9,8 +9,7 @@ export default {
   data() {
     return { 
       // store: store,
-      store,
-      allCharacters: []
+      store
     }
   },
   components: {
